@@ -1,25 +1,40 @@
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
 
-function App() {
+
+
+const App = props => {
+  const [email, setEmail] = React.useState("");
+
+  const fetchUserEmail = async () => {
+    const response = await fetch("https://upmostly.com/tutorials/how-to-handle-promises-in-react");
+    const { email } = await response.json();
+    setEmail(email);
+  };
+
+  const promisd=()=>{
+    let a=23
+    let b=25
+    new Promise((resolve, reject)=>{
+      {a>b ? `no this statement wrong ${resolve()}`:`YES ${reject()}`}
+
+      
+      
+
+    }).then(()=>{
+      console.log("yes")
+    }).catch(error)
+    console.log(error);
+  }
+
+  promisd()
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <h1>A user</h1>
+      <p>{email}</p>
+      <button onClick={fetchUserEmail}>Fetch Email</button>
     </div>
-  );
+  )
 }
 
-export default App;
+export default App
